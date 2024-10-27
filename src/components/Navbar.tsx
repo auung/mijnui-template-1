@@ -1,48 +1,60 @@
-import { Avatar, AvatarFallback, AvatarImage } from "./utils/Avatar";
-import { Button } from "./utils/Button";
-import Container from "./utils/Container";
-import { Input } from "./utils/Input";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/Avatar";
+import { Button } from "./ui/Button";
+import Container from "./ui/Container";
+import { Input } from "./ui/Input";
 import { FaSearch } from "react-icons/fa";
 import imgProfile from "@/assets/img/profile.png";
+import { CiBellOn, CiHeart, CiMail } from "react-icons/ci";
+import { IconType } from "react-icons";
+
+const NavLinkIcon = ({ Icon, url }: { Icon: IconType, url: string }) => {
+	return (
+		<a href={url}>
+			<Button size={"sm"} radius={"full"} variant={"surface"} className="bg-main hover:bg-muted">
+				<Icon size={28} />
+			</Button>
+		</a>
+	);
+}
 
 const Navbar = () => {
   return (
 		<nav>
-			<Container className="flex items-center justify-between py-4 gap-8">
-				<h1 className="text-4xl font-bold">
-					<a href="#">Freelancers</a>
-				</h1>
-				<form action="#" className="flex gap-2 items-center grow">
-					{/* <input type="text" className="border-neutral-800 border-2 border-solid" /> */}
-					<Input
-						type="text"
-						className="w-full"
-						placeholder="What services are you looking for today?"
-						name="searchQuery"
-					/>
-					<Button>
-						<FaSearch size={16} />
-					</Button>
-				</form>
-				<div>
-					<a href="#">Fiverr Pro</a>
-				</div>
-				<div className="flex gap-3 items-center">
-					<a href="#" className="material-symbols-outlined">notifications</a>
-					<a href="#" className="material-symbols-outlined">mail</a>
-					<a href="#" className="material-symbols-outlined">favorite</a>
-				</div>
-				<div className="flex gap-4 items-center">
-					<a href="#">Orders</a>
-					<Avatar size="md">
-						<AvatarImage src={imgProfile} />
-						<AvatarFallback>
-							A
-						</AvatarFallback>
-					</Avatar>
-				</div>
-			</Container>
 			<Container>
+				<div className="flex items-center justify-between py-4 gap-8">
+					<h1 className="text-4xl font-bold">
+						<a href="#">Freelancers</a>
+					</h1>
+					<form action="#" className="flex gap-2 items-center grow">
+						{/* <input type="text" className="border-neutral-800 border-2 border-solid" /> */}
+						<Input
+							type="text"
+							className="w-full"
+							placeholder="What services are you looking for today?"
+							name="search"
+						/>
+						<Button>
+							<FaSearch size={16} />
+						</Button>
+					</form>
+					<div>
+						<a href="#">Fiverr Pro</a>
+					</div>
+					<div className="flex gap-1 items-center">
+						<NavLinkIcon Icon={CiBellOn} url="#" />
+						<NavLinkIcon Icon={CiMail} url="#" />
+						<NavLinkIcon Icon={CiHeart} url="#" />
+					</div>
+					<div className="flex gap-4 items-center">
+						<a href="#">Orders</a>
+						<Avatar size="md">
+							<AvatarImage src={imgProfile} />
+							<AvatarFallback>
+								A
+							</AvatarFallback>
+						</Avatar>
+					</div>
+				</div>
 				<ul className="flex gap-6 text-lg">
 					<li><a href="#">Graphic & Design</a></li>
 					<li><a href="#">Programming & Tech</a></li>

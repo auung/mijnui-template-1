@@ -1,18 +1,28 @@
-import Container from "./utils/Container";
+import Container from "./ui/Container";
 import imgHero from "@/assets/img/hero.jpg";
-import { Button } from "./utils/Button";
+import { Button } from "./ui/Button";
+import { IconType } from "react-icons";
+import { BsNewspaper, BsSuitcaseLg } from "react-icons/bs";
 
-const RecommendationCard = () => {
+type RecommendationCardProps = {
+	Icon: IconType,
+	title: string,
+	subtitle: string,
+	description: string,
+	btnLabel: string
+}
+
+const RecommendationCard = ({ Icon, title, subtitle, description, btnLabel }: RecommendationCardProps) => {
 	return (
 		<div className="bg-white rounded-xl w-full p-4 shadow-lg">
-			<p className="capitalize text-sm text-gray-400 font-semibold">Recommended for you</p>
+			<p className="uppercase text-sm text-gray-400 font-semibold">{ subtitle }</p>
 			<div className="flex items-center gap-4 mt-2">
 				<div className="rounded-full bg-slate-100 flex justify-center items-center w-12 h-12">
-					<span className="material-symbols-outlined text-2xl">description</span>
+					<Icon size={28} />
 				</div>
 				<div>
-					<p className="text-lg font-semibold">Post a project brief</p>
-					<p>Get tailored offers for your needs.</p>
+					<p className="text-lg font-semibold">{ title }</p>
+					<p>{ description }</p>
 				</div>
 				<Button
 					radius="lg"
@@ -20,7 +30,7 @@ const RecommendationCard = () => {
 					variant="outline"
 					className="ml-auto text-md"
 				>
-					Get Started
+					{ btnLabel }
 				</Button>
 			</div>
 		</div>
@@ -36,8 +46,20 @@ const Hero = () => {
 				<p className="text-lg font-semibold">Made on Freelancers by Katarzyna</p>
 			</div>
 			<Container className="flex gap-6">
-				<RecommendationCard />
-				<RecommendationCard />
+				<RecommendationCard
+					Icon={BsNewspaper}
+					title="Post a project brief"
+					subtitle="Recommended for you"
+					description="Get tailored offers for your needs"
+					btnLabel="Get Started"
+				/>
+				<RecommendationCard
+					Icon={BsSuitcaseLg}
+					title="Tailor Freelancers to your needs"
+					subtitle="Business Recommendations"
+					description="Tell us a bit about your business"
+					btnLabel="Add your info"
+				/>
 			</Container>
 			
 		</div>

@@ -1,24 +1,39 @@
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import { Button } from "./utils/Button";
-import Container from "./utils/Container";
-import { Input } from "./utils/Input";
-import { Label } from "./utils/Label";
+import { Button } from "./ui/Button";
+import Container from "./ui/Container";
+import { Input } from "./ui/Input";
+import { Label } from "./ui/Label";
 import { IconType } from "react-icons";
-import { createElement } from "react";
 import { FaReact, FaRegHeart, FaStar } from "react-icons/fa";
-import { ScrollArea, ScrollBar } from "./utils/ScrollArea";
+import { ScrollArea, ScrollBar } from "./ui/ScrollArea";
 import cardImg from "@/assets/img/card.jpg";
 import imgProfile from "@/assets/img/profile.png";
-import { Avatar, AvatarFallback, AvatarImage } from "./utils/Avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/Avatar";
 import { CiGlobe, CiMoneyBill, CiVideoOn } from "react-icons/ci";
+import { cn } from "../utils";
+import { Dispatch, useState } from "react";
 
-const Radio = ({ selected=false, icon, label }: { selected?: boolean, icon: IconType, label: string }) => {
+type RadioProps = {
+	Icon: IconType,
+	label: string,
+	id: string,
+	selectedCategory: string,
+	setSeletedCategory: Dispatch<string>
+}
+
+const Radio = ({ Icon, label, id, selectedCategory, setSeletedCategory }: RadioProps) => {
 	return (
-		<Label htmlFor="ugc" className={`flex gap-2 p-4  border-solid border-slate-500 rounded-lg cursor-pointer ${selected ? "border-2 bg-slate-200" : ""}`}>
-			<Input type="radio" id="ugc" name="ugc" className="hidden" />
+		<Label
+			htmlFor={id}
+			className={cn([
+				"flex gap-2 p-4 outline outline-0 outline-muted-text rounded-lg cursor-pointer",
+				selectedCategory === id ? "outline-2 bg-slate-200" : ""
+			])}
+		>
+			<Input type="radio" id={id} name="ugc" className="hidden" onChange={() => setSeletedCategory(id)} />
 			<div className="flex items-center">
 				<div className="min-w-12">
-					{createElement(icon)}
+					<Icon size={28} />
 				</div>
 				<div className="text-lg font-semibold w-4/5">{ label }</div>
 			</div>
@@ -31,11 +46,11 @@ const Card = () => {
 		<div className="min-w-64">
 			<div className="relative">
 				<img src={cardImg} alt="card-img" className="w-full h-32 object-cover object-center rounded-lg" />
-				<Button size="sm" variant="ghost" className="absolute top-2 right-2">
+				<Button size="sm" className="absolute top-2 right-2 bg-transparent hover:bg-transparent">
 					<FaRegHeart size={24} />
 				</Button>
 			</div>
-			<div className="flex gap-2 items-center my-2 font-semibold">
+			<div className="gap-2 items-center font-semibold my-2 flex">
 				<Avatar size="sm">
 					<AvatarImage src={imgProfile} />
 					<AvatarFallback>
@@ -57,6 +72,8 @@ const Card = () => {
 }
 
 const Explore = () => {
+	const [selectedCategory, setSeletedCategory] = useState("ugc");
+
 	return (
 		<Container className="mb-8">
 			<div className="flex justify-between items-center mt-10">
@@ -74,21 +91,32 @@ const Explore = () => {
 			<div className="py-4 flex gap-4">
 				<div className="flex flex-col w-1/4">
 					<Radio
-						selected
-						icon={() => <CiVideoOn size={28} />}
+						Icon={CiVideoOn}
 						label="User Generated Content (UGC)"
+						id="ugc"
+						selectedCategory={selectedCategory}
+						setSeletedCategory={setSeletedCategory}
 					/>
 					<Radio
-						icon={() => <FaReact size={28} />}
+						Icon={FaReact}
 						label="Logo Design"
+						id="logo"
+						selectedCategory={selectedCategory}
+						setSeletedCategory={setSeletedCategory}
 					/>
 					<Radio
-						icon={() => <CiGlobe size={28} />}
+						Icon={CiGlobe}
 						label="Website Development"
+						id="web"
+						selectedCategory={selectedCategory}
+						setSeletedCategory={setSeletedCategory}
 					/>
 					<Radio
-						icon={() => <CiMoneyBill size={28} />}
+						Icon={CiMoneyBill}
 						label="Social Media Marketing"
+						id="marketing"
+						selectedCategory={selectedCategory}
+						setSeletedCategory={setSeletedCategory}
 					/>
 				</div>
 				<ScrollArea className="w-3/4 pb-4 shadow-inner shadow-white">
