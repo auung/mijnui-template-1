@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
+import { cn } from "../../utils";
 
-const Container = ({ children, className = "" }: { children: ReactNode, className?: string }) => {
+const Container = ({ children, className }: { children: ReactNode, className?: string }) => {
 	return (
-		<div className={`w-11/12 max-w-screen-xl mx-auto ${className}`}>
+		<div className={cn("w-11/12 max-w-screen-xl mx-auto", className ?? "")}>
 			{ children }
 		</div>
 	);

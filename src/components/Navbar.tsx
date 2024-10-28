@@ -3,30 +3,33 @@ import { Button } from "./ui/Button";
 import Container from "./ui/Container";
 import { Input } from "./ui/Input";
 import { FaSearch } from "react-icons/fa";
-import imgProfile from "@/assets/img/profile.png";
 import { CiBellOn, CiHeart, CiMail } from "react-icons/ci";
 import { IconType } from "react-icons";
 
-const NavLinkIcon = ({ Icon, url }: { Icon: IconType, url: string }) => {
+const NavLinkIcon = ({ Icon, url }: { Icon: IconType; url: string }) => {
 	return (
 		<a href={url}>
-			<Button size={"sm"} radius={"full"} variant={"surface"} className="bg-main hover:bg-muted">
+			<Button
+				size={"sm"}
+				radius={"full"}
+				variant={"surface"}
+				className="bg-main hover:bg-muted"
+			>
 				<Icon size={28} />
 			</Button>
 		</a>
 	);
-}
+};
 
 const Navbar = () => {
-  return (
+	return (
 		<nav>
 			<Container>
-				<div className="flex items-center justify-between py-4 gap-8">
+				<div className="items-center justify-between py-4 gap-8 flex">
 					<h1 className="text-4xl font-bold">
 						<a href="#">Freelancers</a>
 					</h1>
 					<form action="#" className="flex gap-2 items-center grow">
-						{/* <input type="text" className="border-neutral-800 border-2 border-solid" /> */}
 						<Input
 							type="text"
 							className="w-full"
@@ -48,26 +51,40 @@ const Navbar = () => {
 					<div className="flex gap-4 items-center">
 						<a href="#">Orders</a>
 						<Avatar size="md">
-							<AvatarImage src={imgProfile} />
-							<AvatarFallback>
-								A
-							</AvatarFallback>
+							<AvatarImage src="/assets/img/profile.png" />
+							<AvatarFallback>A</AvatarFallback>
 						</Avatar>
 					</div>
 				</div>
 				<ul className="flex gap-6 text-lg">
-					<li><a href="#">Graphic & Design</a></li>
-					<li><a href="#">Programming & Tech</a></li>
-					<li><a href="#">Digital Marketing</a></li>
-					<li><a href="#">Video & Animation</a></li>
-					<li><a href="#">Writing & Translation</a></li>
-					<li><a href="#">Business</a></li>
-					<li><a href="#">Finance</a></li>
-					<li><a href="#">AI Services</a></li>
+					<li>
+						<a href="#">Graphic & Design</a>
+					</li>
+					<li>
+						<a href="#">Programming & Tech</a>
+					</li>
+					<li>
+						<a href="#">Digital Marketing</a>
+					</li>
+					<li>
+						<a href="#">Video & Animation</a>
+					</li>
+					<li>
+						<a href="#">Writing & Translation</a>
+					</li>
+					<li>
+						<a href="#">Business</a>
+					</li>
+					<li>
+						<a href="#">Finance</a>
+					</li>
+					<li>
+						<a href="#">AI Services</a>
+					</li>
 				</ul>
 			</Container>
 		</nav>
-  );
-}
- 
+	);
+};
+
 export default Navbar;

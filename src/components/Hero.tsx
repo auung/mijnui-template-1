@@ -1,28 +1,35 @@
 import Container from "./ui/Container";
-import imgHero from "@/assets/img/hero.jpg";
 import { Button } from "./ui/Button";
 import { IconType } from "react-icons";
 import { BsNewspaper, BsSuitcaseLg } from "react-icons/bs";
 
 type RecommendationCardProps = {
-	Icon: IconType,
-	title: string,
-	subtitle: string,
-	description: string,
-	btnLabel: string
-}
+	Icon: IconType;
+	title: string;
+	subtitle: string;
+	description: string;
+	btnLabel: string;
+};
 
-const RecommendationCard = ({ Icon, title, subtitle, description, btnLabel }: RecommendationCardProps) => {
+const RecommendationCard = ({
+	Icon,
+	title,
+	subtitle,
+	description,
+	btnLabel,
+}: RecommendationCardProps) => {
 	return (
-		<div className="bg-white rounded-xl w-full p-4 shadow-lg">
-			<p className="uppercase text-sm text-gray-400 font-semibold">{ subtitle }</p>
+		<div className="bg-surface rounded-xl w-full p-4 shadow-lg">
+			<p className="uppercase text-sm text-disabled-text font-semibold">
+				{subtitle}
+			</p>
 			<div className="flex items-center gap-4 mt-2">
-				<div className="rounded-full bg-slate-100 flex justify-center items-center w-12 h-12">
+				<div className="rounded-full bg-muted flex justify-center items-center w-12 h-12">
 					<Icon size={28} />
 				</div>
 				<div>
-					<p className="text-lg font-semibold">{ title }</p>
-					<p>{ description }</p>
+					<p className="text-lg font-semibold">{title}</p>
+					<p>{description}</p>
 				</div>
 				<Button
 					radius="lg"
@@ -30,20 +37,26 @@ const RecommendationCard = ({ Icon, title, subtitle, description, btnLabel }: Re
 					variant="outline"
 					className="ml-auto text-md"
 				>
-					{ btnLabel }
+					{btnLabel}
 				</Button>
 			</div>
 		</div>
 	);
-}
+};
 
 const Hero = () => {
 	return (
 		<div className="my-2 relative">
-			<img src={imgHero} alt="hero-image" className="w-full h-48 object-cover absolute top-0 left-0 -z-10" />
-			<div className="w-11/12 mx-auto text-white flex justify-between pt-8 pb-12">
+			<img
+				src="/assets/img/hero.jpg"
+				alt="hero-image"
+				className="w-full h-48 object-cover absolute top-0 left-0 -z-10"
+			/>
+			<div className="w-11/12 mx-auto text-main flex justify-between pt-8 pb-12">
 				<h2 className="text-3xl font-semibold">Welcome to Freelancers, tony</h2>
-				<p className="text-lg font-semibold">Made on Freelancers by Katarzyna</p>
+				<p className="text-lg font-semibold">
+					Made on Freelancers by Katarzyna
+				</p>
 			</div>
 			<Container className="flex gap-6">
 				<RecommendationCard
@@ -61,9 +74,8 @@ const Hero = () => {
 					btnLabel="Add your info"
 				/>
 			</Container>
-			
 		</div>
 	);
-}
- 
+};
+
 export default Hero;
